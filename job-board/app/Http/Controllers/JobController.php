@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JobListing;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -11,7 +12,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        //
+        return view('jobs.index', ['jobs' => JobListing::all()]);
     }
 
     /**

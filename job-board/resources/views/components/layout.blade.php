@@ -8,7 +8,7 @@
 
         @vite('resources/css/app.css')
     </head>
-    <body class="">
-        <div class="text-center text-4xl font-bold">This should be a job board</div>
+    <body>
+        {{ $slot }}
     </body>
 </html>

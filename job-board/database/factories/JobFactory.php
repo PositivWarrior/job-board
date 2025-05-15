@@ -2,14 +2,21 @@
 
 namespace Database\Factories;
 
-use App\Models\Job;
+use App\Models\JobListing;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Job>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobListing>
  */
 class JobFactory extends Factory
 {
+    /**
+     * The model that corresponds to the factory.
+     *
+     * @var class-string<\App\Models\JobListing>
+     */
+    protected $model = JobListing::class;
+
     /**
      * Define the model's default state.
      *
@@ -22,8 +29,8 @@ class JobFactory extends Factory
             'description' => fake()->paragraph(3, true),
             'salary' => fake()->numberBetween(5_000, 150_000),
             'location' => fake()->city(),
-            'category' => fake()->randomElement(Job::$categories),
-            'experience' => fake()->randomElement(Job::$experience),
+            'category' => fake()->randomElement(JobListing::$categories),
+            'experience' => fake()->randomElement(JobListing::$experience),
         ];
     }
 }
