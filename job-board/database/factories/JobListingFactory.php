@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobListing>
  */
-class JobFactory extends Factory
+class JobListingFactory extends Factory
 {
     /**
      * The model that corresponds to the factory.

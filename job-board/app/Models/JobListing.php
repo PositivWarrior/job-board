@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class JobListing extends Model
 {
-     /** @use HasFactory<\Database\Factories\JobFactory> */
      use HasFactory;
 
      protected $table = 'job_listings';
@@ -18,13 +18,20 @@ class JobListing extends Model
 
      public static array $categories = ['IT', 'Marketing', 'Finance', 'Sales'];
 
+     public function employer(): BelongsTo {
+        return $this->belongsTo(Employer::class);
+     }
+
      public function scopeFilter(Builder|QueryBuilder $query, array $filters): Builder|QueryBuilder {
 
         return $query->when($filters['search'] ?? null, function($query, $search) use ($filters) {
             $query->where(function($query) use ($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
-                    // ->orWhere('company_name', 'like', '%' . $filters['search'] . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas('employer', function($query) use ($search) {
+                        $query->where('company_name', 'like', '%' . $search . '%');
+                    });
+
             });
                 })->when($filters['min_salary'] ?? null, function($query, $minSalary) use ($filters) {
                     $query->where('salary', '>=', $minSalary);
