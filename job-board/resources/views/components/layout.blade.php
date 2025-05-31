@@ -16,7 +16,7 @@
                 </li>
             </ul>
 
-            <ul class="flex space-x-2">
+            <ul class="flex space-x-2 items-center">
                 @auth
                     <li>
                         Logged in as {{auth()->user()->name ?? 'Anonymous'}}
@@ -27,7 +27,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <button>Logout</button>
+                            <button class="rounded-md bg-pink-300 px-2 py-1 text-white">Logout</button>
                         </form>
                     </li>
                 @else
