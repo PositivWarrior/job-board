@@ -19,7 +19,9 @@
             <ul class="flex space-x-2 items-center">
                 @auth
                     <li>
-                        Logged in as {{auth()->user()->name ?? 'Anonymous'}}
+                        <a href="{{route('my-job-applications.index')}}">
+                            {{auth()->user()->name ?? 'Anonymous'}}: Applications
+                        </a>
                     </li>
 
                     <li>
