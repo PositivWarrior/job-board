@@ -13,7 +13,10 @@ class MyJobApplicationController extends Controller
             'my_job_application.index',
             [
                 'applications' => request()->user()->jobApplications()
-                    ->with('job', 'job.employer')
+                    ->with([
+                        'job' => fn($query) => $query->withCount('jobApplications')
+                            ->withAvg('jobApplications', 'expected_salary'),
+                        'job.employer'])
                     ->whereHas('job')
                     ->latest()->get()
             ]
