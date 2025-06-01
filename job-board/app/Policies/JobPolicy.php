@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\JobListing;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Log;
 
 class JobPolicy
 {
@@ -66,6 +67,6 @@ class JobPolicy
 
     public function apply(User $user, JobListing $job): bool
     {
-        return false;
+        return !$job->hasUserApplied($user);
     }
 }
