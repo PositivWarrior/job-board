@@ -5,6 +5,8 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 use App\Models\JobListing;
 use App\Policies\JobPolicy;
+use App\Models\Employer;
+use App\Policies\EmployerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         JobListing::class => JobPolicy::class,
+        Employer::class => EmployerPolicy::class,
     ];
 
     /**
