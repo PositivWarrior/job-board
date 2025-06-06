@@ -26,7 +26,12 @@
 
                 <div class="flex space-x-2">
                     <x-link-button href="{{route('my-jobs.edit', $job)}}">Edit</x-link-button>
-                    <x-link-button href="{{route('my-jobs.edit', $job)}}">Edit</x-link-button>
+
+                    <form action="{{route('my-jobs.destroy', $job)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <x-button type="submit" class="bg-red-500 hover:bg-red-600">Delete</x-button>
+                    </form>
                 </div>
             </div>
         </x-job-card>
