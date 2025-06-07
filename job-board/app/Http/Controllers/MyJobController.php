@@ -24,6 +24,7 @@ class MyJobController extends Controller
                 'jobs' => request()->user()->employer
                     ->jobs()
                     ->with(['employer', 'jobApplications', 'jobApplications.user'])
+                    ->withTrashed()
                     ->get()
                     ]
         );
